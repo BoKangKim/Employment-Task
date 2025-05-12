@@ -11,8 +11,8 @@ public partial class BoardController : MonoBehaviour
     [SerializeField] private StageData[] stageDatas;
     [SerializeField] private BoardInitializer initializer;
 
-    [SerializeField] private Material[] blockMaterials;
-    [SerializeField] private Transform spawnerTr;
+    // [SerializeField] private Material[] blockMaterials;
+    // [SerializeField] private Transform spawnerTr;
     [SerializeField] private Transform quadTr;
 
     public float BoardHeight => initializer.boardHeight;
