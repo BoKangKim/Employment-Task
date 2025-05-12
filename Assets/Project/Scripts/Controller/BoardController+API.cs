@@ -7,14 +7,14 @@ public partial class BoardController
     {
         foreach (var checkGroupIdx in boardBlock.checkGroupIdx)
         {
-            if (!boardBlock.isCheckBlock && !CheckBlockGroupDic.ContainsKey(checkGroupIdx)) return false;
+            if (!boardBlock.isCheckBlock && !initializer.CheckBlockGroupDic.ContainsKey(checkGroupIdx)) return false;
         }
 
         //List<Vector2> checkCoordinates = new List<Vector2>();
 
-        int pBlockminX = boardWidth;
+        int pBlockminX = initializer.boardWidth;
         int pBlockmaxX = -1;
-        int pBlockminY = boardHeight;
+        int pBlockminY = initializer.boardHeight;
         int pBlockmaxY = -1;
 
         List<BlockObject> blocks = block.dragHandler.blocks;
@@ -32,7 +32,7 @@ public partial class BoardController
 
         foreach (var checkIndex in boardBlock.checkGroupIdx)
         {
-            foreach (var boardBlockObj in CheckBlockGroupDic[checkIndex])
+            foreach (var boardBlockObj in initializer.CheckBlockGroupDic[checkIndex])
             {
                 foreach (var horizon in boardBlockObj.isHorizon)
                 {
@@ -48,7 +48,7 @@ public partial class BoardController
         //Horizon
         if (hor)
         {
-            int minX = boardWidth;
+            int minX = initializer.boardWidth;
             int maxX = -1;
             foreach (var coordinate in horizonBoardBlocks)
             {
@@ -67,7 +67,7 @@ public partial class BoardController
 
             for (int i = 0; i < horizonBoardBlocks.Count; i++)
             {
-                if (horizonBoardBlocks[i].y <= boardHeight / 2)
+                if (horizonBoardBlocks[i].y <= initializer.boardHeight / 2)
                 {
                     int maxY = -1;
 
@@ -93,9 +93,9 @@ public partial class BoardController
 
                         (int, int) key = (blockCheckCoors[i].Item1, l);
 
-                        if (boardBlockDic.ContainsKey(key) &&
-                            boardBlockDic[key].playingBlock != null &&
-                            boardBlockDic[key].playingBlock.colorType != boardBlock.horizonColorType)
+                        if (initializer.BoardBlockDict.ContainsKey(key) &&
+                            initializer.BoardBlockDict[key].playingBlock != null &&
+                            initializer.BoardBlockDict[key].playingBlock.colorType != boardBlock.horizonColorType)
                         {
                             return false;
                         }
@@ -127,9 +127,9 @@ public partial class BoardController
                             continue;
                         (int, int) key = (blockCheckCoors[i].Item1, l);
 
-                        if (boardBlockDic.ContainsKey(key) &&
-                            boardBlockDic[key].playingBlock != null &&
-                            boardBlockDic[key].playingBlock.colorType != boardBlock.horizonColorType)
+                        if (initializer.BoardBlockDict.ContainsKey(key) &&
+                            initializer.BoardBlockDict[key].playingBlock != null &&
+                            initializer.BoardBlockDict[key].playingBlock.colorType != boardBlock.horizonColorType)
                         {
                             return false;
                         }
@@ -143,7 +143,7 @@ public partial class BoardController
         // Vertical
         else
         {
-            int minY = boardHeight;
+            int minY = initializer.boardHeight;
             int maxY = -1;
 
             foreach (var coordinate in verticalBoardBlocks)
@@ -162,7 +162,7 @@ public partial class BoardController
             for (int i = 0; i < verticalBoardBlocks.Count; i++)
             {
                 //x exist in left
-                if (verticalBoardBlocks[i].x <= boardWidth / 2)
+                if (verticalBoardBlocks[i].x <= initializer.boardWidth / 2)
                 {
                     int maxX = int.MinValue;
 
@@ -188,9 +188,9 @@ public partial class BoardController
                             continue;
                         (int, int) key = (l, blockCheckCoors[i].Item2);
 
-                        if (boardBlockDic.ContainsKey(key) &&
-                            boardBlockDic[key].playingBlock != null &&
-                            boardBlockDic[key].playingBlock.colorType != boardBlock.verticalColorType)
+                        if (initializer.BoardBlockDict.ContainsKey(key) &&
+                            initializer.BoardBlockDict[key].playingBlock != null &&
+                            initializer.BoardBlockDict[key].playingBlock.colorType != boardBlock.verticalColorType)
                         {
                             return false;
                         }
@@ -223,9 +223,9 @@ public partial class BoardController
                             continue;
                         (int, int) key = (l, blockCheckCoors[i].Item2);
 
-                        if (boardBlockDic.ContainsKey(key) &&
-                            boardBlockDic[key].playingBlock != null &&
-                            boardBlockDic[key].playingBlock.colorType != boardBlock.verticalColorType)
+                        if (initializer.BoardBlockDict.ContainsKey(key) &&
+                            initializer.BoardBlockDict[key].playingBlock != null &&
+                            initializer.BoardBlockDict[key].playingBlock.colorType != boardBlock.verticalColorType)
                         {
                             return false;
                         }
@@ -236,8 +236,8 @@ public partial class BoardController
         return true;
     }
 
-    public Material GetTargetMaterial(int index)
-    {
-        return wallMaterials[index];
-    }
+    // public Material GetTargetMaterial(int index)
+    // {
+    //     return wallMaterials[index];
+    // }
 }

@@ -8,4 +8,11 @@
         Color2 = 3,
         Color3 = 4,
     }
+
+    public enum ViewEventType
+    {
+        Down = 0,
+        Drag,
+        Up
+    }
 }

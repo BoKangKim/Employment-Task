@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Game.Factory;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -58,7 +59,7 @@ public class BoardBlockObject : MonoBehaviour
 
                 block.dragHandler.enabled = false;
 
-                bool isRight = isHorizon[i] ? y < _ctrl.boardHeight / 2 : x < _ctrl.boardWidth / 2;
+                bool isRight = isHorizon[i] ? y < _ctrl.BoardHeight / 2 : x < _ctrl.BoardWidth / 2;
                 if (!isRight) length *= -1;
                 Vector3 pos = isHorizon[i]
                     ? new Vector3(block.dragHandler.transform.position.x, block.dragHandler.transform.position.y,
@@ -101,18 +102,11 @@ public class BoardBlockObject : MonoBehaviour
                 }
 
                 int blockLength = isHorizon[i] ? block.dragHandler.horizon : block.dragHandler.vertical;
-                ParticleSystem[] pss = BoardController.Instance.destroyParticlePrefab
-                    .GetComponentsInChildren<ParticleSystem>();
-                foreach (var ps in pss)
-                {
-                    ParticleSystemRenderer psrs = ps.GetComponent<ParticleSystemRenderer>();
-                    psrs.material = BoardController.Instance.GetTargetMaterial((int)block.colorType);
-                }
+                ParticleFactory particleFactory = FactoryContainer.Instance.GetFactory<ParticleFactory>();
+                WallFactory wallFactory = FactoryContainer.Instance.GetFactory<WallFactory>();
 
-                //TODO : Move to Other Class & Adjust Direction / Position
+                ParticleSystem particle = particleFactory.CreateParticle(transform.position, rotation, ParticleType.BlockDestroy, wallFactory.GetWallMatrial((int)block.colorType));
 
-                ParticleSystem particle = Instantiate(BoardController.Instance.destroyParticlePrefab,
-                    transform.position, rotation);
                 particle.transform.position = centerPos;
                 particle.transform.localScale = new Vector3(blockLength * 0.4f, 0.5f, blockLength * 0.4f);
 
@@ -129,13 +123,13 @@ public class BoardBlockObject : MonoBehaviour
         if (x == 0 && y == 0)
             return isHorizon ? LaunchDirection.Down : LaunchDirection.Left;
     
-        if (x == 0 && y == _ctrl.boardHeight)
+        if (x == 0 && y == _ctrl.BoardHeight)
             return isHorizon ? LaunchDirection.Up : LaunchDirection.Left;
     
-        if (x == _ctrl.boardWidth && y == 0)
+        if (x == _ctrl.BoardWidth && y == 0)
             return isHorizon ? LaunchDirection.Down : LaunchDirection.Right;
     
-        if (x == _ctrl.boardWidth && y == _ctrl.boardHeight)
+        if (x == _ctrl.BoardWidth && y == _ctrl.BoardHeight)
             return isHorizon ? LaunchDirection.Up : LaunchDirection.Right;
     
         // 기본 경계 케이스들
@@ -145,10 +139,10 @@ public class BoardBlockObject : MonoBehaviour
         if (y == 0)
             return isHorizon ? LaunchDirection.Down : LaunchDirection.Left;
     
-        if (x == _ctrl.boardWidth)
+        if (x == _ctrl.BoardWidth)
             return isHorizon ? LaunchDirection.Down : LaunchDirection.Right;
     
-        if (y == _ctrl.boardHeight)
+        if (y == _ctrl.BoardHeight)
             return isHorizon ? LaunchDirection.Up : LaunchDirection.Right;
     
         // 기본값 (필요하다면)

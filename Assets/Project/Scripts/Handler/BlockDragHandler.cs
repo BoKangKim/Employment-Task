@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class BlockDragHandler : MonoBehaviour
     private float collisionResetTime = 0.1f; // 충돌 상태 자동 해제 시간
     private float lastCollisionTime;  
     private float moveSpeed = 25f;           
-    private float followSpeed = 30f;        
+    private float followSpeed = 30f;
 
     void Start()
     {
@@ -52,7 +53,7 @@ public class BlockDragHandler : MonoBehaviour
     void OnMouseDown()
     {
         if (!Enabled) return;
-        
+
         isDragging = true;
         rb.isKinematic = false;
         outline.enabled = true;
@@ -307,7 +308,11 @@ public class BlockDragHandler : MonoBehaviour
         transform.DOMove(pos, 1f).SetEase(Ease.Linear)
             .OnComplete(() =>
             {
-                Destroy(particle.gameObject);
+                if(particle != null)
+                {
+                    Destroy(particle.gameObject);
+                }
+                
                 Destroy(gameObject);
                 //block.GetComponent<BlockShatter>().Shatter();
             });
