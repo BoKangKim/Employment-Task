@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2ae8098bfee64a2b8f539977da18731, type: 3}
-  m_Name: StageData_2
+  m_Name: StageData_0
   m_EditorClassIdentifier: 
-  stageIndex: 2
+  stageIndex: 0
   boardBlocks:
   - x: 0
     y: 0
@@ -30,6 +30,10 @@ MonoBehaviour:
     y: 0
     colorType: 
     dataType: 
+  - x: 4
+    y: 0
+    colorType: 
+    dataType: 
   - x: 0
     y: 1
     colorType: 
@@ -46,6 +50,10 @@ MonoBehaviour:
     y: 1
     colorType: 
     dataType: 
+  - x: 4
+    y: 1
+    colorType: 
+    dataType: 
   - x: 0
     y: 2
     colorType: 
@@ -62,6 +70,10 @@ MonoBehaviour:
     y: 2
     colorType: 
     dataType: 
+  - x: 4
+    y: 2
+    colorType: 
+    dataType: 
   - x: 0
     y: 3
     colorType: 
@@ -75,6 +87,10 @@ MonoBehaviour:
     colorType: 
     dataType: 
   - x: 3
+    y: 3
+    colorType: 
+    dataType: 
+  - x: 4
     y: 3
     colorType: 
     dataType: 
@@ -91,68 +107,20 @@ MonoBehaviour:
     colorType: 
     dataType: 
   - x: 3
+    y: 4
+    colorType: 
+    dataType: 
+  - x: 4
     y: 4
     colorType: 
     dataType: 
   playingBlocks:
   - x: 0
     y: 0
-    center: {x: 0, y: 1}
+    center: {x: 4, y: 1}
     uniqueIndex: 0
-    colorType: 5
-    shapes:
-    - offset: {x: 0, y: 0}
-    - offset: {x: 1, y: 0}
-    - offset: {x: 0, y: 1}
-    - offset: {x: 1, y: 1}
-    gimmicks:
-    - gimmickType: None
-  - x: 0
-    y: 0
-    center: {x: 2, y: 2}
-    uniqueIndex: 1
     colorType: 1
     shapes:
     - offset: {x: 0, y: 0}
-    - offset: {x: 1, y: 0}
-    - offset: {x: 0, y: 1}
-    - offset: {x: 1, y: 1}
-    gimmicks:
-    - gimmickType: None
-  Walls:
-  - x: 3
-    y: 0
-    WallDirection: 2
-    length: 1
-    wallColor: 0
-    wallGimmickType: 0
-  - x: 3
-    y: 0
-    WallDirection: 4
-    length: 5
-    wallColor: 0
-    wallGimmickType: 0
-  - x: 0
-    y: 0
-    WallDirection: 3
-    length: 5
-    wallColor: 0
-    wallGimmickType: 0
-  - x: 0
-    y: 4
-    WallDirection: 1
-    length: 1
-    wallColor: 0
-    wallGimmickType: 0
-  - x: 0
-    y: 0
-    WallDirection: 2
-    length: 3
-    wallColor: 5
-    wallGimmickType: 0
-  - x: 1
-    y: 4
-    WallDirection: 1
-    length: 3
-    wallColor: 1
-    wallGimmickType: 0
+    gimmicks: []
+  Walls: []
