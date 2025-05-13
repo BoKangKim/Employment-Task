@@ -66,6 +66,7 @@ namespace Game.Editor
             GimmickContainer.ClearSingleton();
         }
 
+        // 정보 설정 GUI
         private void OnGUI()
         {
             selectedColor = (ColorType)EditorGUILayout.EnumPopup("Color", selectedColor);
@@ -120,6 +121,7 @@ namespace Game.Editor
             }
         }
 
+        // 그리드 그리기
         private void DrawGrid()
         {
             for (int y = 0; y < blockDotArr.GetLength(0); y++)

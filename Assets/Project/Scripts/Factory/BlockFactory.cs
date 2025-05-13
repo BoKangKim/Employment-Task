@@ -14,6 +14,7 @@ namespace Game.Factory
         [Header("Block Group")]
         [SerializeField] private BlockDragHandler blockGroupPrefab;
 
+        // BoardBlock 생성
         public BoardBlockObject CreateBoardBlock(Vector3 createPos, GameObject parent)
         {
             BoardBlockObject blockObj = Instantiate(boardBlockPrefab, parent.transform);
@@ -21,6 +22,7 @@ namespace Game.Factory
             return blockObj;
         }
 
+        // PlayingBLock 생성
         public BlockObject CreateBlock(int materialIndex, GameObject parent)
         {
             BlockObject block = Instantiate(blockPrefab, parent.transform);
@@ -33,6 +35,7 @@ namespace Game.Factory
             return block;
         }
 
+        // BlockGroup 생성
         public BlockDragHandler CreateBlockGroup(GameObject parent)
         {
             BlockDragHandler blockGroup = Instantiate(blockGroupPrefab, parent.transform);

@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace Game.Editor
 {
+    // 에디터에서 사용하는 벽 정보 클래스
     public class WallInfoBlock
     {
         public List<WallInfo> wallInfoList;
@@ -43,15 +44,23 @@ namespace Game.Editor
 
     public class StageEditor : EditorWindow
     {
+        // ScriptableObject를 저장하는 경로
         private readonly string savePath = "Assets/Project/Resource/Data/StageData SO/";
+
+        // 블록배치 2차원 배열
         private BlockInfo[,] blockInfoArr = null;
+        // 벽 배치 2차원 배열
         private WallInfoBlock[,] wallInfoArr = null;
 
+        // GridCell의 사이즈
         private int cellSize = 32;
-        private int gridWidth = 5;
-        private int gridHeight = 5;
-        private Vector2 scrollPosition;
 
+        // 전체 판의 너비
+        private int gridWidth = 5;
+        // 전체 판의 높이
+        private int gridHeight = 5;
+
+        // 판의 크기를 설정하고 Accept 버튼을 눌렀는지
         private bool isStart = false;
         private int stageIndex = 0;
 
@@ -60,6 +69,7 @@ namespace Game.Editor
         {
             GetWindow<StageEditor>("Stage Editor");
 
+            // 실수 방지용으로 InGame과 환경이 똑같은 Test 씬으로 이동하여 데이터 만들기
             string targetScenePath = "Assets/Project/Scenes/StageTestScene.unity";
 
             if (SceneManager.GetActiveScene().path == targetScenePath)
@@ -80,6 +90,7 @@ namespace Game.Editor
             gridHeight = isStart ? gridHeight : EditorGUILayout.IntField("Height (벽 포함 X)", gridHeight);
             stageIndex = isStart ? stageIndex : EditorGUILayout.IntField("Stage Index", stageIndex);
 
+            // 확인 버튼 전체 판의 크기 확정
             if (!isStart && GUILayout.Button("ACCEPT"))
             {
                 blockInfoArr = new BlockInfo[gridHeight, gridWidth];
@@ -87,12 +98,14 @@ namespace Game.Editor
                 isStart = true;
             }
 
+            // 판의 크기 재설정
             if (isStart && GUILayout.Button("RESET"))
             {
                 blockInfoArr = null;
                 isStart = false;
             }
 
+            // Stage 데이터로 변환
             if (isStart && GUILayout.Button("CONVERT TO STAGE DATA"))
             {
                 ConvertToStageData();
@@ -106,6 +119,7 @@ namespace Game.Editor
             EditorGUILayout.BeginVertical();
             if (isStart)
             {
+                // 그리드 그리기
                 GUILayout.Label("블록 설정");
                 DrawBlockGrid();
                 GUILayout.Space(30);
@@ -117,7 +131,7 @@ namespace Game.Editor
             EditorGUILayout.EndVertical();
         }
 
-
+        // 판의 크기대로 블록 그리드 그리기
         private void DrawBlockGrid()
         {
             for (int y = 0; y < gridHeight; y++)
@@ -140,8 +154,10 @@ namespace Game.Editor
 
                         if (blockInfoArr[y, x] == null)
                         {
+                            // 블록 설정하는 Window 열기
                             BlockInfoWindow.OpenWindow(centerX, centerY, gridWidth, gridHeight, (blockInfo) =>
                             {
+                                // 블록 세팅 완료 시 콜백 함수
                                 blockInfoArr[centerY, centerX] = blockInfo;
 
                                 foreach (var shape in blockInfo.shapes)
@@ -173,6 +189,7 @@ namespace Game.Editor
             }
         }
 
+        // 벽 그리드 그리기
         private void DrawWallGrid()
         {
             for (int y = 0; y < wallInfoArr.GetLength(0); y++)
@@ -190,6 +207,7 @@ namespace Game.Editor
 
                     if (x == 0 || x == wallInfoArr.GetLength(1) - 1 || y == 0 || y == wallInfoArr.GetLength(0) - 1)
                     {
+                        // 벽 정보 설정 Window 열기
                         if (GUILayout.Button("W", GUILayout.Width(cellSize), GUILayout.Height(cellSize)))
                         {
                             int centerX = x;
@@ -197,6 +215,7 @@ namespace Game.Editor
 
                             WallInfoWindow.OpenWindow(centerX, centerY, (value) =>
                             {
+                                // 벽 정보 설정 완료 시 콜백
                                 if (value == null || value.Count == 0)
                                 {
                                     return;
@@ -267,6 +286,7 @@ namespace Game.Editor
             }
         }
 
+        // 현재 Window에서 가지고 있는 정보를 StageData로 변환하여 저장
         private void ConvertToStageData()
         {
             var wrapper = ParseToStageJsonData();
@@ -304,6 +324,7 @@ namespace Game.Editor
             Debug.Log($"StageData ScriptableObject 생성 완료: {savePath}");
         }
 
+        // 현재 정보를 StageJson으로 변환
         public StageJsonWrapper ParseToStageJsonData()
         {
             StageJsonData jsonData = new StageJsonData();

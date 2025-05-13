@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GimmickContainer
 {
+    #region Singleton
     private static GimmickContainer instance = null;
     public static GimmickContainer Instance
     {
@@ -22,7 +23,9 @@ public class GimmickContainer
     {
 
     }
+    #endregion
     
+    // 기믹 Dictionary 컨테이너 생성될 때 Generate
     private Dictionary<string, GimmickData> gimmicDict = new Dictionary<string, GimmickData>();
 
     // 구현된 기믹 넣기
@@ -34,6 +37,7 @@ public class GimmickContainer
         gimmicDict.TryAdd(exampleGimmick.gimmickType, exampleGimmick);
     }
 
+    // key 값으로 GimmickData 가져오기
     public GimmickData GetGimmickData(string key)
     {
         GimmickData data = null;
@@ -45,7 +49,8 @@ public class GimmickContainer
 
         return data;
     }
-
+    
+    // static 클래스 정리
     public static void ClearSingleton()
     {
         instance = null;

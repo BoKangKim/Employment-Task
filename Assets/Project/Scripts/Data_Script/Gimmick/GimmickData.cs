@@ -11,6 +11,7 @@ public class GimmickData
     }
 }
 
+// 예시 기믹
 [System.Serializable]
 public class ExampleGimmick : GimmickData
 {
@@ -18,7 +19,7 @@ public class ExampleGimmick : GimmickData
     {
         this.gimmickType = nameof(ExampleGimmick);
     }
-    
+
     public override void Gimmick()
     {
         UnityEngine.Debug.Log($"Active Gimmick!");

@@ -26,6 +26,8 @@ namespace Game.Factory
         
         private Dictionary<string, IFactory> factoryDict = new Dictionary<string, IFactory>();
 
+        // 하위 오브젝트에 있는 Factory를 찾아서 리턴
+        // 한 번 찾은 Factory는 캐싱해둠
         public T GetFactory<T>() where T : MonoBehaviour, IFactory
         {
             string key = typeof(T).ToString();

@@ -50,10 +50,11 @@ namespace Game.Editor
             window.centerY = y;
         }
 
+        // 벽 정보 설정 GUI
         private void OnGUI()
         {
             GUILayout.BeginVertical();
-
+        
             GUIContent tooltipIcon = EditorGUIUtility.IconContent("_Help");
 
             #region  Set Direction
@@ -144,6 +145,7 @@ namespace Game.Editor
             GUILayout.EndVertical();
         }
 
+        // Tooltip 데이터
         private string GetTip(TipType type)
         {
             string tip = string.Empty;
