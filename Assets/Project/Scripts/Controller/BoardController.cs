@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class BoardController : MonoBehaviour
@@ -76,4 +77,15 @@ public partial class BoardController : MonoBehaviour
         Camera.main.transform.position = new Vector3(1.5f + 0.5f * (initializer.boardWidth - 4),camTr.y,camTr.z);
     } 
     
+    #if UNITY_EDITOR
+    public void AddStageData(StageData data)
+    {
+        if(stageDatas == null || stageDatas.Length == 0)
+        {
+            stageDatas = new StageData[1];
+        }
+
+        stageDatas[0] = data;
+    }
+    #endif
 }

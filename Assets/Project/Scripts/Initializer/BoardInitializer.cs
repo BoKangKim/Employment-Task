@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Game.Factory;
 using UnityEngine;
 
+// BoardController의 초기화 역할 분리한 클래스
 public class BoardInitializer : MonoBehaviour
 {
     public int boardWidth;
