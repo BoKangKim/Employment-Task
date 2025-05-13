@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BlockObject : MonoBehaviour
 {
+    [SerializeField] private SkinnedMeshRenderer skinRenderer;
     public BlockDragHandler dragHandler;
     public ColorType colorType;
     public float x;
@@ -71,5 +72,15 @@ public class BlockObject : MonoBehaviour
     {
         Col.enabled = false;
         touchCollider.enabled = false;
+    }
+
+    public void UpdateView(Material material)
+    {
+        if(skinRenderer == null)
+        {
+            return;
+        }
+        
+        skinRenderer.material = material;
     }
 }
