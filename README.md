@@ -1,6 +1,9 @@
 # 🎮 ActionFit Code Test - Unity Client Developer
 
 ---
+## 📜 문서
+- main branch에 PDF 파일로 올려두었습니다.
+- 기존 코드 분석 및 방향성, PLAN 등 제가 작업 하는 방식을 담아두었습니다.
 
 ## ✅ 목표
 
