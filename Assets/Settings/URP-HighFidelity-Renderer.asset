@@ -153,7 +153,7 @@ MonoBehaviour:
   - {fileID: 6049592950285360709}
   m_RendererFeatureMap: adc0de57c6d2eee5d7e3b83247bff4bfb920b26190af4269492a7a2060e6fbb7455e7775bc78f453
   m_UseNativeRenderPass: 0
-  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
+  xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 2
   m_OpaqueLayerMask:
@@ -164,7 +164,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 0
+    stencilReference: 1
     stencilCompareFunction: 8
     passOperation: 2
     failOperation: 0
